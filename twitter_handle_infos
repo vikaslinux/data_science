@@ -1,0 +1,14 @@
+Consumer Key (API Key)	PqSPfWBPGNbnh7ONUDddsxZVW
+Consumer Secret (API Secret)	xigDFiLAOkzsrlbXempi1KDjbYlIR09TCTjjmjpkEsF702fePR
+Access Level	Read-only (modify app permissions)
+Owner	DtuVikasm
+Owner ID	2999578561
+Consumer Key (API Key)	PqSPfWBPGNbnh7ONUDddsxZVW (manage keys and access tokens)
+Access level	Read-only (modify app permissions)
+Consumer Key (API Key)	PqSPfWBPGNbnh7ONUDddsxZVW (manage keys and access tokens)
+Callback URL	None
+Sign in with Twitter	No
+App-only authentication	https://api.twitter.com/oauth2/token
+Request token URL	https://api.twitter.com/oauth/request_token
+Authorize URL	https://api.twitter.com/oauth/authorize
+Access token URL	https://api.twitter.com/oauth/access_token
