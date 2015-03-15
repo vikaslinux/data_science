@@ -18,8 +18,8 @@ def rem_rt(tweets):
                             tweets[m]=i[k+1:] # remove all the char before the : and also the :
                             #print the string
               m=m+1
-
-
+       for i in tweets:
+        print(i)
 #the following function removes any occurence of a substring that starts with the parameter substring in the following function from a given substring.
 def rem_substring(tweets,substring):
        m=0;
@@ -33,10 +33,18 @@ def rem_substring(tweets,substring):
                             #substring after the junk string to our result
                             i=i[:k]
               tweets[m]=i #store the result in tweets "list"
-              print(i)
+              #print(i)
        m=m+1
+       return tweets
 def rem_http(tweets): #function to remove links
-       rem_substring(tweets,'http')
+     return  rem_substring(tweets,'http')
 #finally call the above method here
-rem_rt(tweets)
-rem_http(tweets)
+#The following function removes that substrin which contains @ within it
+def rem_at(tweets):
+     return rem_substring(tweets,'@')
+tweets=rem_rt(tweets)
+#tweets=rem_http(tweets)
+#tweets=rem_at(tweets)
+#for i in tweets:
+# print(i)
+#After all the processing , time to print the tweets and redirect the output to a test file
