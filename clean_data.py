@@ -6,10 +6,25 @@ def isEnglish(s):
   return False
  else:
   return True
-import csv,sys
+import csv,sys,nltk
 tweets=[]
 #filename is the name of the file we want to clean.Please note, that this file contains only one column, i.e. only tweets
 filename="test1"
+
+#def rem_rt(tweets):
+# m=0;
+#iterate over all the tweets in the list
+#for i in tweets:
+# if i[0]=='R' and i[1]=='T': #if RT exists
+#  k=i.find(':') #find the first occurence of :
+#  if k!=-1:
+#   tweets[m]=i[k+1:] # remove all the char before the : and also the :                      #print the string
+#  m=m+1
+#return tweets
+
+
+
+
 with open(filename) as f:
 	for line in f:
 		tweets.append(line)
@@ -53,6 +68,18 @@ def rem_language(tweets):
   tweets[m]=i
   m=m+1
  return tweets
+#The following function removes the stopping words from the tweets
+def rem_stoppingword(tweets):
+ for line in tweets:
+  for word in line.split(' '):
+   if word in nltk.corpus.stopwords.words('english'):
+    print('',end='')
+   else:
+    print(word+' ',end='')
+  print('\n')
+
+
+
 #for i in tweets:
 #	print(i)
 
@@ -63,5 +90,9 @@ tweets=rem_substring(tweets,'http')
 tweets=rem_substring(tweets,'#')
 tweets=removeNonEnglish(tweets)
 tweets=rem_language(tweets)
-for i in tweets:
-	print(i)
+tweets=rem_stoppingword(tweets)
+#for i in tweets:
+#	print(i)
+
+
+
