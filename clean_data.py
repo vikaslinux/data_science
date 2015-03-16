@@ -78,7 +78,10 @@ def rem_stoppingword(tweets):
     print(word+' ',end='')
   print('\n')
 
-
+#The following function is a POS tagger based on the NLTK library
+def POS_tagger(tweets):
+ for line in tweets:
+  print(nltk.pos_tag(line))
 
 #for i in tweets:
 #	print(i)
@@ -90,7 +93,8 @@ tweets=rem_substring(tweets,'http')
 tweets=rem_substring(tweets,'#')
 tweets=removeNonEnglish(tweets)
 tweets=rem_language(tweets)
-tweets=rem_stoppingword(tweets)
+POS_tagger(tweets)
+#tweets=rem_stoppingword(tweets)
 #for i in tweets:
 #	print(i)
 
