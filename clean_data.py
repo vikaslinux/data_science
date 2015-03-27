@@ -1,4 +1,5 @@
 #the following function is used to detect the nonEnglish characters
+#It returns true when the character is an ASCII character
 def isEnglish(s):
  try:
   s.encode('ascii')
@@ -8,8 +9,8 @@ def isEnglish(s):
   return True
 import csv,sys,nltk
 tweets=[]
+filename="tweets.csv"
 #filename is the name of the file we want to clean.Please note, that this file contains only one column, i.e. only tweets
-filename="test1"
 
 #def rem_rt(tweets):
 # m=0;
@@ -52,51 +53,90 @@ def rem_substring(tweets,substring):
               #print(i)
               m=m+1
        return tweets
+
+
+#The following function removes the non English tweets .Makes use of the above written isEnglish Function
 def removeNonEnglish(tweets):
     result=[]
     for i in tweets:
         if isEnglish(i):
             result.append(i)
     return result
-def rem_language(tweets):
+
+
+
+#the following function converts all the text to the lower case
+def lower_case(tweets):
+    result=[]
+    for i in tweets:
+        result.append(i.lower())
+    return result
+
+
+
+def rem_punctuation(tweets):
  print(len(tweets))
  m=0
  for i in tweets:
   i=i.replace('!','')
   i=i.replace(',',' ')
   i=i.replace('.',' ')
+  i=i.replace('?',' ')
   tweets[m]=i
   m=m+1
  return tweets
 #The following function removes the stopping words from the tweets
 def rem_stoppingword(tweets):
+ x=[]
  for line in tweets:
+  t=""
   for word in line.split(' '):
    if word in nltk.corpus.stopwords.words('english'):
-    print('',end='')
+    pass
    else:
-    print(word+' ',end='')
-  print('\n')
-
+    t=t+word+' '
+  print(t)
+  x.append(t)
+ tweets=x
 #The following function is a POS tagger based on the NLTK library
 def POS_tagger(tweets):
  for line in tweets:
-  print(nltk.pos_tag(line))
+  print(nltk.pos_tag(line.split()))
 
 #for i in tweets:
 #	print(i)
 
-#the following function call removes @something from each of the tweet
-tweets=rem_substring(tweets,'@')
-#the following function call removes http://something from each of the tweet
-tweets=rem_substring(tweets,'http')
-tweets=rem_substring(tweets,'#')
-tweets=removeNonEnglish(tweets)
-tweets=rem_language(tweets)
-POS_tagger(tweets)
-#tweets=rem_stoppingword(tweets)
-#for i in tweets:
-#	print(i)
 
-
-
+while 1:
+    print("Data Cleaning Module ver 0.1")
+    print(">")
+    print("1.Print the output to console ")
+    print("2.Remove the Non English characters")
+    print("3.Remove a substring containing the supplied token")
+    print("4.Remove Punctuations")
+    print("5.Convert every character of tweets to lowercase")
+    print("6.Write Output to a file")
+    print("7.Remove Stop Words")
+    print("8.Exit")
+    choice=input("Enter the option->")
+    if choice=="3":
+        s=input("Enter the token (e.g. # to remove #tags ->")
+        tweets=rem_substring(tweets,s)
+    elif choice=="2":
+        tweets=removeNonEnglish(tweets)
+    elif choice=="1":
+        for i in tweets:
+            print(i)
+    elif choice=="8":
+        sys.exit(0)
+    elif choice=="4":
+        tweets=rem_punctuation(tweets)
+    elif choice=="5":
+        tweets=lower_case(tweets)
+    elif choice=="6":
+        filename=input("Please specify a file name to write ->")
+        x=open(filename,"w")
+        for i in tweets:
+            x.write(i)
+    elif choice=="7":
+        tweets=rem_stoppingword(tweets)
