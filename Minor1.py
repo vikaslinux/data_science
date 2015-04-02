@@ -1,5 +1,5 @@
 import csv
-f=open('final_cleaned.csv','r')
+f=open('pos_tagged','r')
 count=1
 mydict={}
 for line in f.readlines():

@@ -9,7 +9,19 @@ def isEnglish(s):
   return True
 import csv,sys,nltk
 tweets=[]
-filename="tweets.csv"
+filename="large_file"
+tweets=[] #store tweets in a list
+with open(filename) as f:
+	for line in f:
+		tweets.append(line)
+
+
+
+
+
+
+
+
 #filename is the name of the file we want to clean.Please note, that this file contains only one column, i.e. only tweets
 
 #def rem_rt(tweets):
@@ -26,9 +38,7 @@ filename="tweets.csv"
 
 
 
-with open(filename) as f:
-	for line in f:
-		tweets.append(line)
+
 #tweets.append('@gurmeetsinghs13 Your faith, your trust is sacred to us. Together we will create a world class Delhi. http://t.co/oGgNgjHw9M')
 #for i in tweets:
 #	print('line')
@@ -137,6 +147,6 @@ while 1:
         filename=input("Please specify a file name to write ->")
         x=open(filename,"w")
         for i in tweets:
-            x.write(i)
+            x.write(i+'\n')
     elif choice=="7":
         tweets=rem_stoppingword(tweets)
